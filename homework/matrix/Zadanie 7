@@ -1,0 +1,48 @@
+//Дана матрица. Элементы первой строки — количество осадков в соответствующий
+//день, второй строки — сила ветра в этот день. Найти, был ли в эти дни ураган?
+//(ураган — когда самый сильный ветер был в самый дождливый день).
+
+#include <iostream>
+#include <array>
+
+const int ROWS = 2;
+const int COLS = 7;
+
+void input(std::array<std::array<int, COLS>, ROWS>& arr) {
+    for (int i = 0; i < ROWS; ++i) {
+        std::cout << "Enter row " << i+1 << " elements separated by spaces: ";
+        for (int j = 0; j < COLS; ++j) {
+            std::cin >> arr[i][j];
+        }
+    }
+}
+
+void checkHurricane(const std::array<std::array<int, COLS>, ROWS>& arr) {
+    int max_wind_speed = arr[1][0];
+    int max_rainfall = arr[0][0];
+    int max_rainfall_day = 0;
+
+    for (int i = 1; i < COLS; ++i) {
+        if (arr[0][i] > max_rainfall) {
+            max_rainfall = arr[0][i];
+            max_rainfall_day = i;
+        }
+
+        if (arr[1][i] > max_wind_speed) {
+            max_wind_speed = arr[1][i];
+        }
+    }
+
+    if (max_wind_speed == arr[1][max_rainfall_day]) {
+        std::cout << "There was a hurricane on day " << max_rainfall_day+1 << std::endl;
+    } else {
+        std::cout << "There was no hurricane." << std::endl;
+    }
+}
+
+int main() {
+    std::array<std::array<int, COLS>, ROWS> arr;
+    input(arr);
+    checkHurricane(arr);
+    return 0;
+}
