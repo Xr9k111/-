@@ -1,0 +1,20 @@
+//Дана строка. Вставить после каждого символа пробел. Пробел не считается символом, после которого надо ставить пробел.
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string str = "This is a sample string.";
+    std::string new_str = "";
+
+    for (int i = 0; i < str.size(); i++) {
+        char c = str[i];
+        if (c != ' ') {
+            new_str += c;
+            new_str += ' ';
+        }
+    }
+
+    std::cout << new_str << std::endl;
+
+    return 0;
+}
