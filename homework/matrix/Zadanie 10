@@ -1,0 +1,53 @@
+//Реализовать вычисление матричных норм из списка выше (только для квадратных матриц).
+
+#include <iostream>
+#include <array>
+
+const int SIZE = 3;
+
+// Функция для заполнения матрицы с клавиатуры
+void fillMatrixFromConsole(std::array<std::array<int, SIZE>, SIZE>& matrix) {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            std::cout << "Enter matrix element at row " << i << ", column " << j << ": ";
+            std::cin >> matrix[i][j];
+        }
+    }
+}
+
+// Функция для вычисления матричной нормы L1
+int matrixNormL1(const std::array<std::array<int, SIZE>, SIZE>& matrix) {
+    int maxColSum = 0;
+
+    for (int j = 0; j < SIZE; j++) {
+        int colSum = 0;
+        for (int i = 0; i < SIZE; i++) {
+            colSum += std::abs(matrix[i][j]);
+        }
+        if (colSum > maxColSum) {
+            maxColSum = colSum;
+        }
+    }
+
+    return maxColSum;
+}
+
+int main() {
+    std::array<std::array<int, SIZE>, SIZE> matrix;
+
+    // Заполнение матрицы с клавиатуры
+    fillMatrixFromConsole(matrix);
+
+    std::cout << "Matrix:\n";
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            std::cout << matrix[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    int normL1 = matrixNormL1(matrix);
+    std::cout << "Matrix L1 Norm: " << normL1 << std::endl;
+
+    return 0;
+}
