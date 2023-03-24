@@ -1,0 +1,43 @@
+//9. Объявить, реализовать заполнение данными с клавиатуры ИЛИ из файла и вывести
+//на экран матрицу, описывающую следующие сущности. Предложите свой вариант.
+//a. Двумерное изображение. Изображение состоит из пикселей. Каждый пиксель
+//характеризуется яркостью цветовых каналов: красный, синий, зелёный.
+
+#include <iostream>
+#include <array>
+
+const int ROWS = 2;
+const int COLS = 2;
+const int CHANNELS = 3;
+
+// Функция для заполнения двумерного массива пикселей из консоли
+void fillPixelsFromConsole(std::array<std::array<std::array<char, CHANNELS>, COLS>, ROWS>& pixels) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            std::cout << "Enter pixel values(0-255) for row " << i << ", column " << j << std::endl;
+            std::cin >> pixels[i][j][0] >> pixels[i][j][1] >> pixels[i][j][2];
+        }
+    }
+}
+
+// Функция для вывода двумерного массива пикселей в консоль
+void printPixels(const std::array<std::array<std::array<char, CHANNELS>, COLS>, ROWS>& pixels) {
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            std::cout << "[" << pixels[i][j][0] << "," << pixels[i][j][1] << "," << pixels[i][j][2] << "] ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+int main() {
+    std::array<std::array<std::array<char, CHANNELS>, COLS>, ROWS> pixels;
+
+    // Заполнение пикселей из консоли
+    fillPixelsFromConsole(pixels);
+
+    // Вывод пикселей в консоль
+    printPixels(pixels);
+
+    return 0;
+}
