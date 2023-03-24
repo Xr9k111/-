@@ -1,0 +1,36 @@
+//В квадратной матрице найти сумму положительных элементов, лежащих на и выше
+//главной диагонали и расположенных в чётных столбцах
+
+#include <iostream>
+#include <array>
+
+const int SIZE = 5;
+
+int sum_positive_numbers(const std::array<std::array<int, SIZE>, SIZE>& matrix)
+{
+    int sum = 0;
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            if (matrix[i][j] > 0 && j % 2 == 0 && j >= i)
+            {
+                sum += matrix[i][j];
+            }
+        }
+    }
+    return sum;
+}
+
+int main()
+{
+    std::array<std::array<int, SIZE>, SIZE> matrix = { { {1, -2, 3, 4, -5},
+                                                         {6, 7, -8, 9, 10},
+                                                         {11, 12, 13, -14, 15},
+                                                         {-16, 17, 18, 19, -20},
+                                                         {21, 22, -23, 24, 25} } };
+    int sum = sum_positive_numbers(matrix);
+    std::cout << "Sum of positive numbers in even columns, on and above the diagonal: " << sum << std::endl;
+
+    return 0;
+}
