@@ -1,0 +1,19 @@
+//В данной строке найти количество цифр.
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string str;
+    std::getline(std::cin, str);
+
+    int digit_count = 0;
+    for (int i = 0; i < str.length(); i++) {
+        char c = str[i];
+        if (isdigit(c)) { // проверка, является ли символ цифрой
+            digit_count++;
+        }
+    }
+
+    std::cout << "Count of digits: " << digit_count << std::endl;
+    return 0;
+}
