@@ -1,0 +1,61 @@
+//Найти самое часто встречающееся слово в тексте.
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+struct Two{
+    std::string str;
+    int count;
+};
+
+int main() {
+    std::string text;
+    std::getline(std::cin, text);
+    text += " ";
+    std::vector<Two> freq;
+
+    // разбиваем текст на отдельные слова
+    std::string word = "";
+    for (int i = 0; i < text.size(); i++) {
+        char c = text[i];
+        if (c != ' ' && c != '\0') {
+            word += std::tolower(c);
+        } else {
+            if (!word.empty()) {
+                bool control = true;
+                for (int i = 0; i < freq.size(); i++) {
+                    Two& p = freq[i];
+                    if (p.str == word) {
+                        p.count++;
+                        control = false;
+                        break;
+                    }
+                }
+                if(control)
+                {
+                    Two send;
+                    send.str = word;
+                    send.count = 1;
+                    freq.push_back(send);
+                }
+                word = "";
+            }
+        }
+    }
+    // находим наиболее часто встречающееся слово
+    std::string most_common_word = "";
+    int max_freq = 0;
+    for (int i = 0; i < freq.size(); i++) {
+        Two& p = freq[i];
+        if (p.count > max_freq) {
+            most_common_word = p.str;
+            max_freq = p.count;
+        }
+    }
+
+    std::cout << "The most common word in the text is \"" << most_common_word <<
+        "\". It appears " << max_freq << " times." << std::endl;
+
+    return 0;
+}
