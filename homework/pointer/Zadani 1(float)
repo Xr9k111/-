@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+int x = 10, y = 5;
+int *p1 = &x, *p2 = &y;
+float *f1 = reinterpret_cast<float *>(p1);
+float *f2 = reinterpret_cast<float *>(p2);
+
+cout « "Address of p1: " « f1 « endl;
+cout « "Address of p2: " « f2 « endl;
+
+int sum = *p1 + *p2;
+int diff = *p1 - *p2;
+cout « "Sum: " « sum « endl;
+cout « "Difference: " « diff « endl;
+
+return 0;
+}
