@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+void swap(float *ptr1, float *ptr2) {
+float temp = *ptr1;
+*ptr1 = *ptr2;
+*ptr2 = temp;
+}
+
+int main() {
+float x = 2.5, y = 3.7;
+float *p1 = &x, *p2 = &y;
+
+cout « "Before swap:" « endl;
+cout « "x = " « x « ", y = " « y « endl;
+cout « "Address of p1: " « p1 « endl;
+cout « "Address of p2: " « p2 « endl;
+
+swap(p1, p2);
+
+cout « "After swap:" « endl;
+cout « "x = " « x « ", y = " « y « endl;
+cout « "Address of p1: " « p1 « endl;
+cout « "Address of p2: " « p2 « endl;
+
+return 0;
+}
