@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main() {
+int size;
+cout « "Enter the size of the array: ";
+cin » size;
+
+int *arr = new int[size];
+
+srand(time(0)); // инициализируем генератор случайных чисел
+
+for (int i = 0; i < size; i++) {
+arr[i] = rand() % 100; // заполняем массив случайными числами от 0 до 99
+cout « "Address of arr[" « i « "]: " « &arr[i] « ", value: " « arr[i] « endl;
+}
+
+delete[] arr; // освобождаем память, занятую массивом
+
+return 0;
+}
